@@ -37,6 +37,7 @@ def dict_to_mask(df,dict):
     return df[mask][keys]
 
 df=dict_to_mask(exoplanetes,Earth_like)
-print(df)
+print('Earth-like planets:')
+display(df)
 
 #exoplanetes_filt_pl_orbper.groupby('pl_orbper').count()['pl_name'].plot(style='.')
