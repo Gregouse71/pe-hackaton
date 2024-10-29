@@ -31,7 +31,18 @@ df.set_index('sy_dist').groupby(by='discoverymethod')['disc_year'].plot(style='.
 df.describe()
 
 # %%
-ax = sns.relplot(data=df, x="sy_dist", y="disc_year", hue="discoverymethod")
-sns.move_legend(ax, "upper left", bbox_to_anchor=(1, 1))
+
+sns.relplot(data=df, x="sy_dist", y="disc_year", hue="discoverymethod", legend=False)
+
+# %%
+df.set_index("st_age")[['sy_bmag', 'sy_vmag', 'sy_jmag', 'sy_hmag', 'sy_kmag', 'sy_umag']].plot(style=".", ms=1)
+
+# %%
+(df.dtypes == object).sum()
+
+
+# %%
+df.isna().any(axis=1).unique() # toutes les planètes ont au moins un NaN
+
 
 # %%
