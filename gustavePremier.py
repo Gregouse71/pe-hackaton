@@ -31,7 +31,8 @@ df.set_index('sy_dist').groupby(by='discoverymethod')['disc_year'].plot(style='.
 df.describe()
 
 # %%
-sns.relplot(data=df, x="sy_dist", y="disc_year", hue="discoverymethod", legend=False)
+ax = sns.relplot(data=df, x="sy_dist", y="disc_year", hue="discoverymethod")
+sns.move_legend(ax, "upper left", bbox_to_anchor=(1, 1))
 
 # %%
 df.set_index("st_age")[['sy_bmag', 'sy_vmag', 'sy_jmag', 'sy_hmag', 'sy_kmag', 'sy_umag']].plot(style=".", ms=1)
