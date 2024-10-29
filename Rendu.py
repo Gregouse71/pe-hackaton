@@ -55,7 +55,7 @@ table.plot(x='sy_pnum', y='st_rad', style='.', xlabel='nombre planètes', ylabel
 # Les étoiles ayant le plus de planètes dans leur système sont les plus petites, peu denses. 
 # Toutefois, on remarque que les étoiles des systèmes à 7 planètes semblent plus denses que celles des systèmes à 5, 6 ou 8 planètes.
 
-# %%
+
 table.plot(x='sy_snum', y='st_mass', style='.', xlabel='nombre étoiles', ylabel='masse étoile', legend=False)
 table.plot(x='sy_snum', y='st_dens', style='.', xlabel='nombre étoiles', ylabel='densité étoile', legend=False)
 table.plot(x='sy_snum', y='st_rad', style='.', xlabel='nombre étoiles', ylabel='rayon étoile', legend=False);
@@ -64,3 +64,35 @@ table.plot(x='sy_snum', y='st_rad', style='.', xlabel='nombre étoiles', ylabel=
 # On observe le même phénomène avec le nombre d’étoiles des systèmes. Il y a cependant une étoile d’un système à 3 étoiles qui est particulièrement dense.
 
 # %%
+
+Earth_like={}
+Earth_like['pl_rade']=(0.5,2)
+Earth_like['pl_masse']=(0.5,2)
+Earth_like['pl_orbeccen']=(0,0.2)
+
+Earth_like['st_teff']=(4500,7000)
+Earth_like['st_mass']=(0.1,10)
+
+# %%
+
+def dict_to_mask(df,dict):
+    mask=df['disc_year'] > 0
+    keys=['pl_name','sy_dist']
+    for key in dict:
+        keys.append(key)
+        if type(dict[key]) == tuple:
+            mask_key = (df[key] >= dict[key][0]) & (df[key] <= dict[key][1])
+       
+        else:
+            mask_key = df[key] == dict[key]
+        
+        mask = mask & mask_key
+
+    return df[mask][keys]
+
+# %%
+
+df=dict_to_mask(table,Earth_like)
+print('Earth-like planets:')
+print(df)
+
