@@ -8,17 +8,18 @@ exoplanetes=pd.read_csv('exoplanetes.csv',comment='#')
 
 exoplanetes_sample=exoplanetes.iloc[:100]
 
-period={}
-period['pl_orbper' ]=(150,1000)
-perio['pl_rade']=(0.6,2)
+Earth_like={}
+Earth_like['pl_orbper' ]=(150,1000)
+Earth_like['pl_rade']=(0.6,2)
+Earth_like['']
+
 
 def dict_to_mask(df,dict):
     mask=df['disc_year'] > 0
     for key in dict:
         if type(dict[key]) == tuple:
             mask_key = (df[key] > dict[key][0]) & (df[key] < dict[key][1])
-
-        
+       
         else:
             mask_key = df[key] == dict[key]
         
@@ -26,6 +27,6 @@ def dict_to_mask(df,dict):
 
     return df[mask]
 
-print(dict_to_mask(exoplanetes,period))
+print(dict_to_mask(exoplanetes,Earth_like))
 
 #exoplanetes_filt_pl_orbper.groupby('pl_orbper').count()['pl_name'].plot(style='.')
