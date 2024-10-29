@@ -56,3 +56,11 @@ table.plot(x='sy_pnum', y='st_rad', style='.', xlabel='nombre planètes', ylabel
 # Toutefois, on remarque que les étoiles des systèmes à 7 planètes semblent plus denses que celles des systèmes à 5, 6 ou 8 planètes.
 
 # %%
+table.plot(x='sy_snum', y='st_mass', style='.', xlabel='nombre étoiles', ylabel='masse étoile', legend=False)
+table.plot(x='sy_snum', y='st_dens', style='.', xlabel='nombre étoiles', ylabel='densité étoile', legend=False)
+table.plot(x='sy_snum', y='st_rad', style='.', xlabel='nombre étoiles', ylabel='rayon étoile', legend=False);
+
+# %% [markdown]
+# On observe le même phénomène avec le nombre d’étoiles des systèmes. Il y a cependant une étoile d’un système à 3 étoiles qui est particulièrement dense.
+
+# %%
