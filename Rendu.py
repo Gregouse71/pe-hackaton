@@ -17,7 +17,6 @@
 import pandas as pd
 import numpy as np
 import seaborn as sns
-import scipy as sp
 # %%
 table = pd.read_csv ("exoplanetes.csv", comment="#")
 # %%
@@ -48,9 +47,10 @@ ax.set (title="Periode de révolution en fonction du demi grand-axe de la trajec
 
 # %%
 # tracé avec pandas de la découverte des étoiles selon la distance
-df.set_index('sy_dist').groupby(by='discoverymethod')['disc_year'].plot(style='.')
+df.set_index('sy_dist').groupby(by='discoverymethod')['disc_year']
 # et avec seaborn
-sns.relplot(data=df, x="sy_dist", y="disc_year", hue="discoverymethod", legend=False)
+ax = sns.relplot(data=df, x="sy_dist", y="disc_year", hue="discoverymethod")
+sns.move_legend(ax, "upper left", bbox_to_anchor=(1, 1))
 
 # %%
 # est-ce que la luminosité des étoiles diminue avec l'âge ?
@@ -60,9 +60,11 @@ df.set_index("st_age")[['sy_bmag', 'sy_vmag', 'sy_jmag', 'sy_hmag', 'sy_kmag', '
 # %%
 table.isna().any(axis=1).unique() # toutes les planètes ont au moins un NaN
 
-# %%
+# %% [markdown]
 # tentative de regrouper les étoiles par catégories en fonction de leur température.
-# échec, c'est très continu et pas du tout regroupé
+# C'est un échec, c'est très continu et pas du tout regroupé
+
+# %%
 df[df["st_teff"]< 10000].sort_values("st_teff").set_index("st_teff", drop=False)["st_teff"].plot(style=".", ms=1)
 
 # %%
