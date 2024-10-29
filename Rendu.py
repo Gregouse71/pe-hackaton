@@ -45,3 +45,14 @@ df4['logperiod'] = np.log(df4['pl_orbper'])
 ax = sns.regplot (data=df4, x='logorb', y='logperiod', line_kws=dict(color="r"))
 ax.set (title="Periode de révolution en fonction du demi grand-axe de la trajectoire\n avec regression linéaire (3ème loi de Kepler)", xlabel="Log (demi grand-axe)", ylabel="log (periode de révolution)")
 
+
+# %%
+table.plot(x='sy_pnum', y='st_mass', style='.', xlabel='nombre planètes', ylabel='masse étoile', legend=False)
+table.plot(x='sy_pnum', y='st_dens', style='.', xlabel='nombre planètes', ylabel='densité étoile', legend=False)
+table.plot(x='sy_pnum', y='st_rad', style='.', xlabel='nombre planètes', ylabel='rayon étoile', legend=False);
+
+# %% [markdown]
+# Les étoiles ayant le plus de planètes dans leur système sont les plus petites, peu denses. 
+# Toutefois, on remarque que les étoiles des systèmes à 7 planètes semblent plus denses que celles des systèmes à 5, 6 ou 8 planètes.
+
+# %%
